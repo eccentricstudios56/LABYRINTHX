@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LABYRINTHX - Glassmorphism Edition</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Modern Ambient Lighting Gradients -->
+        <div class="ambient-glow glow-1"></div>
+        <div class="ambient-glow glow-2"></div>
+        <div class="ambient-glow glow-3"></div>
+
+        <!-- Header Bar -->
+        <header id="top-bar" class="glass-panel-sm">
+            <div class="currency-group">
+                <div class="currency-display coins-display">
+                    <span class="coin-icon">🪙</span>
+                    <span id="x-coins-count">0</span>
+                </div>
+                <div class="currency-display gems-display">
+                    <span class="gem-icon">💎</span>
+                    <span id="x-gems-count">0</span>
+                </div>
+            </div>
+            <div class="header-title">
+                <span class="brand-title">LABYRINTH<span class="brand-x">X</span></span>
+            </div>
+            <div class="header-controls">
+                <div class="audio-toggle" id="btn-sound" title="Toggle Sound">
+                    <span id="sound-icon">🔊</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Screens Container -->
+        <main id="screen-container">
+
+            <!-- MAIN MENU SCREEN -->
+            <section id="screen-main-menu" class="screen active">
+                <div class="glass-card hero-card">
+                    <div class="logo-wrapper">
+                        <h1 class="game-logo">LABYRINTH<span class="x-accent">X</span></h1>
+                        <p class="subtitle">NEON GLASS MAZE ADVENTURE</p>
+                    </div>
+
+                    <div class="menu-level-badge glass-inset">
+                        <span class="badge-label">EXPLORATION LEVEL</span>
+                        <h2 id="menu-current-level-text">LEVEL 1</h2>
+                    </div>
+
+                    <div class="menu-buttons">
+                        <button id="btn-play" class="btn btn-primary glass-btn">
+                            <span class="btn-shine"></span>
+                            <span>PLAY LABYRINTH</span>
+                        </button>
+                        <button id="btn-level-select" class="btn btn-secondary glass-btn">
+                            🗺️ SELECT LEVEL
+                        </button>
+                        <button id="btn-daily" class="btn btn-secondary glass-btn">
+                            <span class="daily-badge">HARD</span>
+                            <span>💎 DAILY PUZZLE</span>
+                        </button>
+                        <button id="btn-shop" class="btn btn-tertiary glass-btn">
+                            🛍️ MARKETPLACE
+                        </button>
+                        <button id="btn-history" class="btn btn-tertiary glass-btn">
+                            📜 GAME HISTORY
+                        </button>
+                        <button id="btn-leaderboard" class="btn btn-tertiary glass-btn">
+                            🏆 LEADERBOARD
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LEVEL SELECT SCREEN (PLAY COMPLETED LEVELS) -->
+            <section id="screen-level-select" class="screen">
+                <div class="glass-card">
+                    <h2>LEVEL SELECT</h2>
+                    <p class="panel-desc">Replay completed labyrinths to refine your time & moves</p>
+
+                    <div id="level-grid-container" class="level-grid scrollable-list">
+                        <!-- Dynamic Level Grid -->
+                    </div>
+
+                    <button class="btn btn-secondary btn-back glass-btn">BACK TO MENU</button>
+                </div>
+            </section>
+
+            <!-- GAMEPLAY SCREEN -->
+            <section id="screen-gameplay" class="screen">
+                <div class="hud-top glass-panel-sm">
+                    <button id="btn-gameplay-back" class="btn-icon-back" title="Back to Menu">⬅️ BACK</button>
+                    <div class="hud-level-info">
+                        <span id="hud-env-name">NEON CRYSTAL</span>
+                        <h3 id="hud-level-number">LEVEL 1</h3>
+                    </div>
+                    <div class="hud-stats">
+                        <div class="stat-box">⏱️ <span id="hud-timer">00:00</span></div>
+                        <div class="stat-box">👣 <span id="hud-moves">0</span></div>
+                    </div>
+                </div>
+
+                <!-- Canvas Viewport -->
+                <div id="canvas-container">
+                    <canvas id="game-canvas"></canvas>
+                    <div id="swipe-overlay"></div>
+                </div>
+
+                <div class="hud-bottom glass-panel-sm">
+                    <div class="items-bar">
+                        <span id="hud-key-slot" class="item-slot">🗝️ x0</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SHOP / MARKET SCREEN -->
+            <section id="screen-shop" class="screen">
+                <div class="glass-card">
+                    <h2>MARKETPLACE</h2>
+                    <p class="panel-desc">Unlock 10+ custom explorer skins with Coins & Gems</p>
+
+                    <div id="shop-items-container" class="shop-grid scrollable-list">
+                        <!-- Dynamic Shop Items -->
+                    </div>
+
+                    <button class="btn btn-secondary btn-back glass-btn">BACK TO MENU</button>
+                </div>
+            </section>
+
+            <!-- HISTORY SCREEN -->
+            <section id="screen-history" class="screen">
+                <div class="glass-card">
+                    <h2>GAME HISTORY</h2>
+                    <div id="history-list" class="scrollable-list">
+                        <!-- Dynamic History Records -->
+                    </div>
+                    <button class="btn btn-secondary btn-back glass-btn">BACK TO MENU</button>
+                </div>
+            </section>
+
+            <!-- LEADERBOARD SCREEN -->
+            <section id="screen-leaderboard" class="screen">
+                <div class="glass-card">
+                    <h2>LEADERBOARD</h2>
+                    <div id="leaderboard-list" class="scrollable-list">
+                        <!-- Dynamic Leaderboard Items -->
+                    </div>
+                    <button class="btn btn-secondary btn-back glass-btn">BACK TO MENU</button>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- LEVEL COMPLETE MODAL -->
+        <div id="modal-complete" class="modal-overlay hidden">
+            <div class="glass-card modal-box">
+                <h2 class="complete-title">LABYRINTH CLEARED!</h2>
+                <h3 id="complete-level-num">LEVEL 1</h3>
+
+                <div class="star-rating">
+                    <span class="star" id="star-1">★</span>
+                    <span class="star" id="star-2">★</span>
+                    <span class="star" id="star-3">★</span>
+                </div>
+
+                <div class="complete-stats glass-inset">
+                    <div class="stat-row">
+                        <span>TIME:</span>
+                        <strong id="complete-time">00.0s</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>MOVES:</span>
+                        <strong id="complete-moves">0</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>SCORE:</span>
+                        <strong id="complete-score" class="gold-text">0</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>REWARDS:</span>
+                        <strong id="complete-coins" class="coin-text">+0 🪙</strong>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button id="btn-next-level" class="btn btn-primary glass-btn btn-full">
+                        NEXT LABYRINTH ➔
+                    </button>
+                    <button id="btn-complete-menu" class="btn btn-secondary glass-btn">MENU</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEVEL 100 MILESTONE MODAL -->
+        <div id="modal-milestone-100" class="modal-overlay hidden">
+            <div class="glass-card modal-box milestone-card">
+                <div class="milestone-crown">👑 🏆 👑</div>
+                <h2 class="complete-title milestone-glow">CONGRATULATIONS!</h2>
+                <p class="milestone-subtitle">YOU HAVE CONQUERED 100 LABYRINTHS</p>
+
+                <div class="wasted-time-box glass-inset">
+                    <p class="wasted-text">You have successfully wasted</p>
+                    <h1 id="wasted-time-display" class="time-gradient">0 HOURS 0 MINS 0 SECS</h1>
+                    <p class="wasted-text">of your life in LABYRINTHX!</p>
+                </div>
+
+                <div class="optional-details-form">
+                    <p class="form-title">Enter Hall of Fame (Optional):</p>
+                    <input type="text" id="player-name-input" placeholder="Your Explorer Name" class="glass-input">
+                    <input type="text" id="player-country-input" placeholder="Country" class="glass-input">
+                    <input type="email" id="player-email-input" placeholder="Email Address" class="glass-input">
+                    <input type="tel" id="player-phone-input" placeholder="Phone Number" class="glass-input">
+                </div>
+
+                <div class="modal-actions" style="margin-top: 15px;">
+                    <button id="btn-submit-halloffame" class="btn btn-primary glass-btn btn-full">
+                        JOIN HALL OF FAME 🌟
+                    </button>
+                    <button id="btn-skip-halloffame" class="btn btn-secondary glass-btn btn-full">
+                        SKIP FOR NOW
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
